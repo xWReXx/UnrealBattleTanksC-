@@ -21,7 +21,6 @@ void ATankPlayerController::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 	AimTowardsCrosshair();
-	UE_LOG(LogTemp, Warning, TEXT("Player Controller ticking"));
 }
 
 ATank* ATankPlayerController::GetControlledTank() const
@@ -32,4 +31,23 @@ ATank* ATankPlayerController::GetControlledTank() const
 void ATankPlayerController::AimTowardsCrosshair()
 {
 	if (!GetControlledTank()) { return; }
+
+	FVector HitLocation; //out parameter
+	if (GetSightRayHitLocation(HitLocation)) 
+	{
+		//UE_LOG(LogTemp, Warning, TEXT("Hit Location: %s"), *HitLocation.ToString());
+	}
+	
+}
+
+bool ATankPlayerController::GetSightRayHitLocation(FVector& HitLocation) const
+{
+	// find crosshair position
+	int32 ViewportSizeX, ViewportSizeY;
+	GetViewportSize(ViewportSizeX, ViewportSizeY);
+	auto ScreenLocation = FVector2D(ViewportSizeX * CrosshairXLocation, ViewportSizeY * CrosshairYLocation);
+	UE_LOG(LogTemp, Warning, TEXT("CrossHair Location: %s"), *ScreenLocation.ToString());
+	//de-project the screen position of the crosshair to world direction
+	// line trace along the look direction, log what is hit
+	return true;
 }
