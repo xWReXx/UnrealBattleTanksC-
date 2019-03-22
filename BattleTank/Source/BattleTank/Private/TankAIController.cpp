@@ -18,6 +18,8 @@ void ATankAIController::BeginPlay()
 	}
 }
 
+
+
 ATank * ATankAIController::GetPlayerTank() const
 {
 	auto PlayerPawn = GetWorld()->GetFirstPlayerController()->GetPawn();
