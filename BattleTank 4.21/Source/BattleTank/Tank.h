@@ -15,6 +15,9 @@ class BATTLETANK_API ATank : public APawn
 public:
 	// Sets default values for this pawn's properties
 	void AimAt(FVector HitLocation);
+
+	UFUNCTION(BlueprintCallable, category = setup)
+		void SetBarrelReference(UStaticMeshComponent* BarrelToSet);
 	
 
 protected:
